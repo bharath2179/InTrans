@@ -6,8 +6,17 @@ find $folder -type d   -mtime +1 -exec rm -rf {} \;
 folder=/home/ec2-user/wavetronix/
 find $folder -type d -mtime +1 -exec rm -rf {} \;
 
+folder=/home/ec2-user/wavetronix_new/
+find $folder -type d -mtime +1 -exec rm -rf {} \;
+
+folder=/home/ec2-user/data/rwis/
+find $folder -type d -mtime +1 -exec rm -rf {} \;
+
 folder=/home/ec2-user/tpims/
 find $folder -type d -mtime +1 -exec rm -rf {} \;
 
 folder=/home/ec2-user/rwis/
 find $folder -type d -mtime +1 -exec rm -rf {} \;
+
+folder=/home/ec2-user/pikalert/
+find $folder -type d -mtime +2 -exec rm -rf {} \;

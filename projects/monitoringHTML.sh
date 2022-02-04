@@ -1,6 +1,5 @@
 #!/bin/bash
-#export PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/aws/bin:/home/ec2-user/.local/bin:/home/ec2-user/bin
-export PATH=/home/ec2-user/anaconda3/bin:/home/ec2-user/anaconda3/condabin:/home/ec2-user/anaconda2/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/aws/bin:/home/ec2-user/.local/bin:/home/ec2-user/bin
+export PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/aws/bin:/home/ec2-user/.local/bin:/home/ec2-user/bin
 rm -rf /home/ec2-user/logs/monitoring_file.html
 echo "<!DOCTYPE html>" >> /home/ec2-user/logs/monitoring_file.html
 echo "<H3> Files count on Directory </H2>"  >> /home/ec2-user/logs/monitoring_file.html
@@ -152,7 +151,7 @@ monitoring_missing_list > /home/ec2-user/logs/monitoring.log
 
 
 bucket_name=s3://intrans-feed/rwis
-expected_files_count=1440
+expected_files_count=321
 print_name=rwis
 
 ##Calling function for 3rd Directory
@@ -167,7 +166,7 @@ print_name=tpims
 monitoring_missing_list1 > /home/ec2-user/logs/monitoring.log
 
 ##5th function
-files_count=`s3cmd ls -l --recursive s3://intrans-feed/TCP_Work_Zone_Performance/EventLog.csv | wc -l`
+files_count=`s3cmd ls -l --recursive s3://intrans-feed/TCP_Work_Zone_Performance | wc -l`
 
         if [ ${files_count} ==  '1' ]
         then
@@ -179,7 +178,7 @@ files_count=`s3cmd ls -l --recursive s3://intrans-feed/TCP_Work_Zone_Performance
 
 ##
 folder_name=/home/ec2-user/wavetronix
-expected_files_count=4323
+expected_files_count=1440
 print_name=wavetronix_raw
 
 ##Calling function for 6th Directory
@@ -188,7 +187,7 @@ monitoring_missing_list2 > /home/ec2-user/logs/monitoring.log
 
 
 folder_name=/home/ec2-user/inrix
-expected_files_count=1443
+expected_files_count=1440
 print_name=inrix_raw
 
 ##Calling function for 7th Directory
@@ -196,7 +195,7 @@ monitoring_missing_list2 > /home/ec2-user/logs/monitoring.log
 
 
 folder_name=/home/ec2-user/tpims
-expected_files_count=1441
+expected_files_count=1440
 print_name=tpims_raw
 
 ##Calling function for 8th Directory
@@ -204,20 +203,12 @@ monitoring_missing_list2 > /home/ec2-user/logs/monitoring.log
 
 
 folder_name=/home/ec2-user/data/rwis
-expected_files_count=1441
+expected_files_count=1440
 print_name=rwis_raw
 
 ##Calling function for 9th Directory
 monitoring_missing_list2 > /home/ec2-user/logs/monitoring.log
 
-
-##
-folder_name=/home/ec2-user/pikalert
-expected_files_count=97
-print_name=pikalert_raw
-
-##Calling function for 10th Directory
-monitoring_missing_list2 > /home/ec2-user/logs/monitoring.log
 
 
 ##HTML end
@@ -228,4 +219,4 @@ echo "-- function complete --" >> /home/ec2-user/logs/monitoring.log
 
 
 
-aws s3 cp /home/ec2-user/logs/monitoring_file.html s3://intrans-mon/
+#aws s3 cp /home/ec2-user/logs/monitoring_file.html s3://intrans-mon/

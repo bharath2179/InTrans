@@ -1,0 +1,41 @@
+#Includes all of the crontabs setup in ec2 instance
+
+#* * * * * sh /home/ec2-user/invokeWavetronixLambda.sh
+#* * * * * sh /home/ec2-user/invokeWavetronixLambda_1.sh
+#* * * * * sh /home/ec2-user/inrixLambdaInvoker.sh
+#* * * * * sh /home/ec2-user/inrixRawCsvS3.sh
+#* * * * * cd /home/ec2-user && sh /home/ec2-user/scripts/wavetronix.sh
+40 01 * * * sh /home/ec2-user/atms_data_dwnld/tmc.sh >> /home/ec2-user/atms_data_dwnld/tmc.log
+* * * * * sh /home/ec2-user/invokeWavetronixLambda_1.sh
+* * * * * sleep 20; sh /home/ec2-user/invokeWavetronixLambda_1.sh
+* * * * * sleep 40; sh /home/ec2-user/invokeWavetronixLambda_1.sh
+#* * * * * cd /home/ec2-user && sh /home/ec2-user/scripts/inrix.sh
+* * * * * cd /home/ec2-user && sh  /home/ec2-user/scripts/tpims.sh
+*/5 * * * * cd /home/ec2-user && sh /home/ec2-user/scripts/rwis.sh
+07 00 * * * cd /home/ec2-user && java -jar eventlog_download.jar
+11 00 * * *  sh /home/ec2-user/eventlogmove.sh
+#20 02 * * * sh /home/ec2-user/wavetronixmove.sh >> /home/ec2-user/wavetronixmove.log
+#10 02 * * * sh /home/ec2-user/inrixmove.sh >> /home/ec2-user/inrixmove.log
+51 01 * * * sh /home/ec2-user/scripts/rwis_s3.sh >> /home/ec2-user/scripts/rwis_s3.log
+52 01 * * * sh /home/ec2-user/scripts/tpims_s3.sh >> /home/ec2-user/scripts/tpims_s3.log
+53 01 * * * sh /home/ec2-user/scripts/cleanup_script.sh >> /home/ec2-user/scripts/cleanup_script.log
+30 07 * * * sh /home/ec2-user/scripts/s3mon.sh >> /home/ec2-user/scripts/s3mon.log
+30 03 * * * sh /home/ec2-user/scripts/msck.sh >> /home/ec2-user/scripts/msck.log
+#* * * * * cd /home/ec2-user && sh arrowboard.sh
+#*/10 * * * * cd /home/ec2-user && sh /home/ec2-user/511archival.sh
+25 11 * * *  sh /home/ec2-user/data/rwis_csv/rwis_move.sh
+#*/05 * * *  cd /home/ec2-user && sh /home/ec2-user/WZDxarchival.sh
+30 10 * * *  cd /home/ec2-user/inventorycodes && sh inventory_download.sh
+45 10 * * *  cd /home/ec2-user/inventorycodes && sh inventorymove.sh
+* * * * * sh /home/ec2-user/scripts/wavetronix.sh
+* * * * * sleep 20; sh /home/ec2-user/scripts/wavetronix.sh
+* * * * * sleep 40; sh /home/ec2-user/scripts/wavetronix.sh
+*/15 * * * *  sh /home/ec2-user/pikalert.sh
+* * * * * sh /home/ec2-user/scripts/rwis.sh
+* * * * * sleep 20; sh /home/ec2-user/scripts/rwis.sh
+* * * * * sleep 40; sh /home/ec2-user/scripts/rwis.sh
+20 01 * * * sh /home/ec2-user/wavetronixRaws3Move.sh >> /home/ec2-user/wavetronixRaws3Move.log
+51 03 * * * sh /home/ec2-user/pikalert_s3cp.sh >> /home/ec2-user/pikalert_s3cp.log
+#* * * * * sh /home/ec2-user/waveOneHour.sh
+#* * * * * sleep 20; sh /home/ec2-user/waveOneHour.sh
+#* * * * * sleep 40; sh /home/ec2-user/waveOneHour.sh
